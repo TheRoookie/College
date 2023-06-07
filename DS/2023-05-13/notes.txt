@@ -1,0 +1,41 @@
+ballencing of symbols 
+
+string reversion
+
+undo / redo
+
+DFS - Depth first search
+
+back tracking
+
+
+
+==>experation conversion
+
+
+
+
+the expressionn in which the operator is placed between tow operants thenit is called as an infix expressionn
+eg - a+b
+
+pre expresion in which the operator is placed before the operands then it is called as an prefix operation it is alos kwnown as polish notation
+
++ab
+
+the experation in which the operator is placed after the operands then it is called as postfix expresion .It is also call reverse polish notation.
+
+ab+
+
+
+postfix benifits - dont need rules of precidence 
+2. dont need rules for right and left assosiavity
+3.you cont need parenthisis tho override the above rules
+
+symbols                       precidence                    rank
++,-                             1(L-R)                       -1
+/,*,%                           2(L-R)                       -1
+$,^,(up arrow)                  3(R-L)                       -1
+a,b,c,d                         5                             1
+
+
+conversion -

@@ -1,0 +1,10 @@
+Interfaces =====>
+
+all methodes are public abstract by default and can not be overidden
+all data menbers are public static final .  eg, int x; is public static final int x;
+
+
+
+Interface extends Interface
+
+class impliments Interface

@@ -1,0 +1,5 @@
+17-05-2023
+
+-Make a runtime execption
+-Name the execption = under age ecption
+-Create a class voter and ask the user to enter age ,if the age is less then 18 it throws execption.
