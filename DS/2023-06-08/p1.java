@@ -19,20 +19,21 @@ public class p1 {
         System.out.println();
     }
 }
-/*class runner
+class runner
 {
     void run()
     {
         Scanner sc = new Scanner(System.in);
+        que q = new que(5);
         System.out.println("In or Out");
         char res = sc.nextLine().charAt(0);
         if(res == 'i' || res == 'I')
         {
-
+            
         }
 
     }
-}*/
+}
 class que
 {
     int[] q;

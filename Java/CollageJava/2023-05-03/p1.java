@@ -15,7 +15,7 @@ public class p1
         Scanner sc = new Scanner(System.in);
         int c = sc.nextInt();
         //System.out.print("\033[H\033[2J");
-        Runtime.getRuntime().exec("cls");
+        //Runtime.getRuntime().exec("cls");
 
         
     }
