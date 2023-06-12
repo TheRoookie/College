@@ -4,12 +4,12 @@ public class DrinknDrive
     {
         Drive d = new Drive();
         d.start();
-        d.join();
+        d.join(10000);
         for (int i = 0; i < 11; i++)
         {
             System.out.println("Cheers....");
         }
-        System.out.println(d.isAlive());
+        //System.out.println(d.isAlive());
         
     }
 }

@@ -1,56 +1,45 @@
-import java.util.*;
+//package JASH;
 
 public class p1
 {
-
-    public static void main(String[] args)
+    public static void main(String[] args) 
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Base add : ");
-        int ba = sc.nextInt();
-        System.out.println("Row Index");
-        int i = sc.nextInt();
-        System.out.println("Collumn Index");
-        int j = sc.nextInt();
-        System.out.println("Size : ");
-        int s = sc.nextInt();
-        System.out.println("Lower row : ");
-        int lr = sc.nextInt();
-        System.out.println("Upper Row : ");
-        int ur = sc.nextInt();
-        System.out.println("Lower Collumn : ");
-        int lc = sc.nextInt();
-        System.out.println("Upper Collumn : ");
-        int uc = sc.nextInt();
-        System.out.println("Row Major : 1  || Column Major : 2");
-        int res1 = sc.nextInt();
+        c1[] c = new c1[10];
+        c[0] = new b();
+        c[1] = new c1(6);
+        c[2] = new c1(2);
+        c[3] = new c1(8);
+        c[4] = new c1(4);
+        c[5] = new c1(8);
 
-        int R = ur-lr+1;
-        int C = uc-lc+1;
+        // for (int i = 0; i < c.length; i++)
+        // {
+        //     c[i] = new c1();
+        // }
+
+        c[2].m1();
+
+
+
+    }
+}
+class c1
+{
+    c1(){System.out.println("A");}
+    c1(int a)
+    {
+        System.out.println(a);
+    }
+    void m1()
+    {
         
-
-
-
-
-
-        if (res1==1) {
-
-            int ansadd = ba + (s*(  ((i-lr)*C) + (j-lc) ) );
-            System.out.println(ansadd);
-            
-        }
-        else if(res1 == 2)
-        {
-            int ansadd = ba + (s*( (i-lr) + ((j-lc)*R) ) );
-            System.out.println(ansadd);
-        }
-        else
-        {
-            System.out.println("What the fuck!!!");
-        }
-
-
-
-
+    }
+    
+}
+class b extends c1
+{
+    b()
+    {
+        System.out.println("B");
     }
 }
