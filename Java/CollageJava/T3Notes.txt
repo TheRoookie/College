@@ -1,0 +1,10 @@
+List files -->
+
+        File f5 = new File("/home/parthdb/Desktop");
+        File[] f55 = f5.listFiles();
+        for (File file : f55)
+        {
+            System.out.println(file);
+        }
+
+
