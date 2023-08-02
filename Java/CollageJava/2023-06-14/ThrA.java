@@ -19,7 +19,7 @@ class thrb extends Thread
     {
         synchronized(this)
         {
-            for (int i = 0; i < 1000000000; i++)
+            for(int i = 0; i < 1000000000; i++)
             {
                 total += i;
             }
