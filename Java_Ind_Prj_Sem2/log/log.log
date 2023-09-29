@@ -1,0 +1,20 @@
+
+2023-09-29 16:03:27-->java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/personalFinanceSystem
+
+2023-09-29 16:41:18-->java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/personalFinanceSystem
+
+2023-09-29 16:48:37-->com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+
+2023-09-29 16:48:53-->com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+
+2023-09-29 16:49:16-->com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+
+2023-09-29 17:09:36-->java.util.InputMismatchException
+
+2023-09-29 17:27:25-->java.util.InputMismatchException

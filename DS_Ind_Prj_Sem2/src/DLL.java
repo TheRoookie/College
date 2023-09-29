@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DLL {
@@ -13,18 +14,19 @@ public class DLL {
         System.out.println("Delete all values less than given value in Doubly Linked List.");
         System.out.println();
         while (true) {
-            System.out.println("1 : Add Node");
-            System.out.println("2 : Delete Node");
-            System.out.println("3 : Delete Node less than given Value*****");
-            System.out.println("4 : Display List");
-            System.out.println("5 : Exit");
 
             while (true) {
+                System.out.println("1 : Add Node");
+                System.out.println("2 : Delete Node");
+                System.out.println("3 : Delete Node less than given Value*****");
+                System.out.println("4 : Display List");
+                System.out.println("5 : Exit");
                 try {
                     res = sc.nextInt();
                     break;
                 } catch (Exception e) {
-                    System.out.println("Enter a valid Number. Menu*");
+                    sc.nextLine();
+                    System.out.println("Enter a valid Number.");
                 }
             }
 
@@ -83,6 +85,7 @@ public class DLL {
                     res = sc.nextInt();
                     break;
                 } catch (Exception e) {
+                    sc.nextLine();
                     System.out.println("Enter a Valid number.");
                 }
             }
@@ -199,6 +202,7 @@ public class DLL {
                     res = sc.nextInt();
                     break;
                 } catch (Exception e) {
+                    sc.nextLine();
                     System.out.println("Enter a Valid number.");
                 }
             }
@@ -264,6 +268,9 @@ public class DLL {
                         System.out.println("Enter a Valid number.");
                         break;
                 }
+            } catch (InputMismatchException ie) {
+                sc.nextLine();
+                System.out.println("Enter an Integer.");
             } catch (Exception e) {
                 System.out.println("Enter an Integer.");
             }
