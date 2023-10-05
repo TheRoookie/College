@@ -21,3 +21,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 
 2023-10-06 02:12:02-->java.lang.Exception: test
 
+
+2023-10-06 02:35:10-->java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/personalFinanceSystem
+
+2023-10-06 02:35:15-->java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/personalFinanceSystem

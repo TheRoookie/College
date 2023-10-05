@@ -21,8 +21,10 @@ public class PersonalFinanceSystem {
 
     public static void main(String[] args) throws Exception {
 
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
         try {
-            File f = new File("log/log.log");
+            File f = new File("Java_Ind_Prj_Sem2/log/log.log");
 
             if (!f.exists()) {
                 System.out.println("Creating Log File...");
@@ -90,7 +92,7 @@ public class PersonalFinanceSystem {
 
         Exception e) {
             System.out.println("Some Error Occured !");
-            e.printStackTrace();
+            // e.printStackTrace();
 
             fw.write("\r\n" + dtf.format(now) + "-->" + e.toString() + "\r\n");
 
