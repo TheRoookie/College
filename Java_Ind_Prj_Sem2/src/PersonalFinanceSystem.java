@@ -1,13 +1,20 @@
 import java.io.File;
 import java.io.FileWriter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.sql.Date;
 import java.util.Scanner;
 
 public class PersonalFinanceSystem {
 
     static FileWriter fw;
+
+    static Scanner scanner = new Scanner(System.in);
+    static Connection connection;
 
     static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("[yyyy-MM-dd HH:mm:ss]");
     static LocalDateTime now = LocalDateTime.now();
@@ -23,7 +30,7 @@ public class PersonalFinanceSystem {
             }
             fw = new FileWriter(f, true);
 
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/personalFinanceSystem",
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/personalFinanceSystem",
                     "root", "");
             if (connection != null) {
                 System.out.println("Connection Success !");
@@ -31,8 +38,6 @@ public class PersonalFinanceSystem {
                 System.out.println("Connection Failed !");
                 System.exit(0);
             }
-
-            Scanner scanner = new Scanner(System.in);
 
             while (true) {
                 try {
@@ -47,14 +52,14 @@ public class PersonalFinanceSystem {
                     switch (choice) {
                         case 1:
 
-                            recordExpense(connection, scanner);
+                            recordExpense();
 
                             break;
                         case 2:
-                            recordIncome(connection, scanner);
+                            recordIncome();
                             break;
                         case 3:
-                            viewTransactions(connection, scanner);
+                            viewTransactions();
                             break;
                         case 4:
                             System.out.println("Exiting the program.");
@@ -67,8 +72,8 @@ public class PersonalFinanceSystem {
                             break;
                     }
                 } catch (Exception e) {
+                    System.out.print("Invalid Input.");
                     scanner.nextLine();
-                    System.out.println("Why?");
                 }
             }
         } catch (Exception e) {
@@ -83,35 +88,77 @@ public class PersonalFinanceSystem {
 
     }
 
-    private static void recordExpense(Connection connection, Scanner scanner) throws Exception {
+    static void recordExpense() throws Exception {
         while (true) {
             try {
+
+                String sql = "INSERT INTO Transactions (user_id, category_id, amount, description, date) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
                 System.out.print("Enter the user ID: ");
-                int userId = scanner.nextInt();
+                int userId;
+                while (true) {
+                    try {
+                        userId = scanner.nextInt();
+                        break;
+                    } catch (Exception e) {
+                        System.out.print("Invalid Input.");
+                        scanner.nextLine();
+                    }
+                }
+                preparedStatement.setInt(1, userId);
 
                 System.out.print("Enter the category ID for the expense: ");
-                int categoryId = scanner.nextInt();
+                int categoryId;
+                while (true) {
+                    try {
+                        categoryId = scanner.nextInt();
+                        break;
+                    } catch (Exception e) {
+                        System.out.print("Invalid Input.");
+                        scanner.nextLine();
+                    }
+                }
+                preparedStatement.setInt(2, categoryId);
 
                 System.out.print("Enter the expense amount: ");
-                double amount = scanner.nextDouble();
-
-                scanner.nextLine();
+                double amount;
+                while (true) {
+                    try {
+                        amount = scanner.nextDouble();
+                        break;
+                    } catch (Exception e) {
+                        System.out.print("Invalid Input.");
+                        System.out.print("Invalid Input.");
+                        scanner.nextLine();
+                    }
+                }
+                preparedStatement.setDouble(3, amount);
 
                 System.out.print("Enter a description for the expense: ");
-                String description = scanner.nextLine();
+                String description;
+                while (true) {
+                    try {
+                        description = scanner.nextLine();
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Invalid Input.");
+
+                    }
+                }
+                preparedStatement.setString(4, description);
 
                 System.out.print("Enter the date (YYYY-MM-DD) of the expense: ");
-                String dateStr = scanner.nextLine();
-
-                Date date = Date.valueOf(dateStr);
-
-                String insertExpenseQuery = "INSERT INTO Transactions (user_id, category_id, amount, description, date) VALUES (?, ?, ?, ?, ?)";
-                PreparedStatement preparedStatement = connection.prepareStatement(insertExpenseQuery);
-                preparedStatement.setInt(1, userId);
-                preparedStatement.setInt(2, categoryId);
-                preparedStatement.setDouble(3, amount);
-                preparedStatement.setString(4, description);
-                preparedStatement.setDate(5, date);
+                String dateStr;
+                while (true) {
+                    try {
+                        dateStr = scanner.nextLine();
+                        Date date = Date.valueOf(dateStr);
+                        preparedStatement.setDate(5, date);
+                        break;
+                    } catch (Exception e) {
+                    }
+                }
 
                 int rowsInserted = preparedStatement.executeUpdate();
 
@@ -122,7 +169,9 @@ public class PersonalFinanceSystem {
                 }
                 break;
             } catch (Exception e) {
-                e.printStackTrace();
+                // e.printStackTrace();
+
+                System.out.println("Error Occered.");
 
                 fw.write("\r\n" + dtf.format(now) + "-->" + e.toString() + "\r\n");
 
@@ -130,22 +179,57 @@ public class PersonalFinanceSystem {
         }
     }
 
-    private static void recordIncome(Connection connection, Scanner scanner) throws Exception {
+    static void recordIncome() throws Exception {
         while (true) {
             try {
                 System.out.print("Enter the user ID: ");
-                int userId = scanner.nextInt();
+                int userId = 0;
+
+                while (true) {
+                    try {
+                        userId = scanner.nextInt();
+                        break;
+                    } catch (Exception e) {
+                        System.out.print("Invalid Input.");
+                        scanner.nextLine();
+                    }
+                }
 
                 System.out.print("Enter the category ID for the income: ");
-                int categoryId = scanner.nextInt();
+                int categoryId;
+                while (true) {
+                    try {
+                        categoryId = scanner.nextInt();
+                        break;
+                    } catch (Exception e) {
+                        System.out.print("Invalid Input.");
+                        scanner.nextLine();
+                    }
+                }
 
                 System.out.print("Enter the income amount: ");
-                double amount = scanner.nextDouble();
-
-                scanner.nextLine();
+                double amount;
+                while (true) {
+                    try {
+                        amount = scanner.nextDouble();
+                        break;
+                    } catch (Exception e) {
+                        System.out.print("Invalid Input.");
+                        scanner.nextLine();
+                    }
+                }
 
                 System.out.print("Enter a description for the income: ");
-                String description = scanner.nextLine();
+                String description;
+                while (true) {
+                    try {
+                        description = scanner.nextLine();
+                        break;
+                    } catch (Exception e) {
+                        System.out.print("Invalid Input.");
+
+                    }
+                }
 
                 Date date;
                 while (true) {
@@ -156,6 +240,8 @@ public class PersonalFinanceSystem {
                         date = Date.valueOf(dateStr);
                         break;
                     } catch (Exception e) {
+                        System.out.print("Invalid Input.");
+
                         fw.write("\r\n" + dtf.format(now) + "-->" + e.toString() + "\r\n");
                     }
                 }
@@ -176,7 +262,7 @@ public class PersonalFinanceSystem {
                     System.out.println("Failed to record income.");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                // e.printStackTrace();
                 System.out.println("ERR --> Try Again.");
                 fw.write("\r\n" + dtf.format(now) + "-->" + e.toString() + "\r\n");
             }
@@ -184,12 +270,21 @@ public class PersonalFinanceSystem {
         }
     }
 
-    private static void viewTransactions(Connection connection, Scanner scanner) throws Exception {
+    static void viewTransactions() throws Exception {
 
         while (true) {
             try {
                 System.out.print("Enter the user ID to view transactions: ");
-                int userId = scanner.nextInt();
+                int userId;
+                while (true) {
+                    try {
+                        userId = scanner.nextInt();
+                        break;
+                    } catch (Exception e) {
+                        System.out.print("Invalid Input.");
+                        scanner.nextLine();
+                    }
+                }
 
                 System.out.println("\n");
 
@@ -215,6 +310,8 @@ public class PersonalFinanceSystem {
                 }
 
                 resultSet.close();
+                scanner.nextLine();
+                scanner.nextLine();
                 break;
             } catch (Exception e) {
                 System.out.println("Something went Horribaly wrong , try again.");
