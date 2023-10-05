@@ -18,3 +18,6 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 2023-09-29 17:09:36-->java.util.InputMismatchException
 
 2023-09-29 17:27:25-->java.util.InputMismatchException
+
+2023-10-06 02:12:02-->java.lang.Exception: test
+

@@ -40,14 +40,24 @@ public class PersonalFinanceSystem {
             }
 
             while (true) {
+
                 try {
+
                     System.out.println("Personal Finance System");
                     System.out.println("1. Record Expense");
                     System.out.println("2. Record Income");
                     System.out.println("3. View Transactions");
                     System.out.println("4. Exit");
                     System.out.print("Enter your choice: ");
-                    int choice = scanner.nextInt();
+                    int choice;
+                    while (true) {
+                        try {
+                            choice = scanner.nextInt();
+                            break;
+                        } catch (Exception e) {
+                            scanner.nextLine();
+                        }
+                    }
 
                     switch (choice) {
                         case 1:
@@ -72,11 +82,13 @@ public class PersonalFinanceSystem {
                             break;
                     }
                 } catch (Exception e) {
+                    fw.write("\r\n" + dtf.format(now) + "-->" + e.toString() + "\r\n");
                     System.out.print("Invalid Input.");
-                    scanner.nextLine();
                 }
             }
-        } catch (Exception e) {
+        } catch (
+
+        Exception e) {
             System.out.println("Some Error Occured !");
             e.printStackTrace();
 
