@@ -24,7 +24,7 @@ public class PersonalFinanceSystem {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         try {
-            File f = new File("Java_Ind_Prj_Sem2/log/log.log");
+            File f = new File("log/log.log");
 
             if (!f.exists()) {
                 System.out.println("Creating Log File...");
